@@ -1,0 +1,125 @@
+.product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    width: 264px;
+    height: 360px;
+    justify-self: center;
+    margin: 20px;
+}
+
+.dark-product-card{
+  background-color: lightgray;
+  color: #bb86fc;
+}
+
+.product-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.product-info p:nth-child(1), .product-info p:nth-child(3){
+font-size: 12px;
+color: #282828;
+font-weight: 700;
+padding: 5px 15px;
+}
+
+ .product-info p:nth-child(2){
+font-weight: 400;
+ padding: 5px 15px;
+font-size: 10px;
+color: #949494;
+}
+
+
+.dark-product-info p:nth-child(1){
+font-size: 12px;
+color: #956BC9;
+font-weight: 700;
+padding: 5px 15px;
+}
+
+.dark-product-info p:nth-child(3){
+ color: #bb86fc;
+}
+
+ .dark-product-info p:nth-child(2){
+font-weight: 400;
+ padding: 5px 15px;
+font-size: 10px;
+color: black;
+}
+
+
+
+.product-card img{
+    max-height: 178px;
+   max-width: 178px;
+   object-fit: contain;
+   margin: 35px 15px;
+  mix-blend-mode: multiply;
+}
+
+.img-box{
+    border-radius: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 220px;
+    height: 240px;
+    position: relative;
+     border: 2px solid #EFEFEF;
+}
+
+.img-box img {
+  transition: transform 0.5s ease;
+}
+
+.img-box img:hover {
+  transform: scale(1.2);
+}
+
+.img-box img:hover:not(:hover) {
+  transition: transform 1s ease;
+  transform: scale(1);
+}
+
+
+
+ .heart-icon{
+    background-color: #E7E7E7;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 4px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.dark-icon{
+    color: var(--Blue-Page-Color);
+    font-size: 1.5em;
+    background-color: #E7E7E7;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 4px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+ .heart-icon{
+    color: white;
+}
+
