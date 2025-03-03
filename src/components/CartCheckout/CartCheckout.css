@@ -101,3 +101,30 @@ color: #282828;
   padding: 10px 0;
 }
 }
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.quantity-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.quantity-number {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.trash-icon {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: red;
+}
