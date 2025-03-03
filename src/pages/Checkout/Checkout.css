@@ -143,30 +143,7 @@ color: #979797;
   color: white;
 }
 
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-}
 
-.quantity-btn {
-  background: #f0f0f0;
-  border: none;
-  padding: 8px 12px;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.quantity-btn:hover {
-  background: #ddd;
-}
-
-.quantity-number {
-  font-size: 18px;
-  font-weight: bold;
-}
 
 @keyframes buttonAnimation {
   0% {
