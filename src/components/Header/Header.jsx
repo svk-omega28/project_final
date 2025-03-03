@@ -25,7 +25,7 @@ function Header() {
       "header-container header-dark"
     }>
       <Link to="/">
-        <h1>Omega Store</h1>
+        <h1>Hard Store</h1>
         </Link>
         <div onClick={()=> setDarkMode(!darkMode)}>
            {
