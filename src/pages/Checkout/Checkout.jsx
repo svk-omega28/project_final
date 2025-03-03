@@ -37,6 +37,7 @@ function Checkout() {
     setTotal(updatedTotal.toFixed(2));
   }, [hearted]);
 
+  // Функция для изменения количества товара
   const updateQuantity = (id, amount) => {
     const updatedCart = hearted.map((item) =>
       item.id === id
@@ -64,12 +65,11 @@ function Checkout() {
         ) : (
           hearted.map((item) => (
             <div key={item.id} className="cart-item">
-              <CartCheckout productsAdded={item} />
-              <div className="quantity-controls">
-                <button className="quantity-btn" onClick={() => updateQuantity(item.id, -1)}>-</button>
-                <span className="quantity-number">{item.quantity || 1}</span>
-                <button className="quantity-btn" onClick={() => updateQuantity(item.id, 1)}>+</button>
-              </div>
+              <CartCheckout
+                productsAdded={item}
+                onIncrease={() => updateQuantity(item.id, 1)}
+                onDecrease={() => updateQuantity(item.id, -1)}
+              />
             </div>
           ))
         )}
