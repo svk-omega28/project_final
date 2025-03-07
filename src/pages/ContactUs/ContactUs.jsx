@@ -3,10 +3,8 @@ import "./Contact.css"
 import { ThemeContext } from '../../contexts/DarkModeContext'
 
 function ContactUs() {
-  //* a box with 3 inputs for user to send  data to server
-    //** toggle dark mode */
-  //** use context for global state */
-  const {darkMode} = useContext(ThemeContext);
+
+    const {darkMode} = useContext(ThemeContext);
   return (
     <div className={
       darkMode?

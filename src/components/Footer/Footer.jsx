@@ -3,11 +3,10 @@ import "./Footer.css"
 import { ThemeContext } from '../../contexts/DarkModeContext';
 import { Link } from 'react-router-dom';
 import { FaGithubSquare, FaLinkedin} from "react-icons/fa";
-// FaGithubSquare
+
 
 function Footer() {
-   //** toggle dark mode */
-  //** use context for global state */
+
   const {darkMode} = useContext(ThemeContext);
   return (
     <div className={

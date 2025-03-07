@@ -9,7 +9,6 @@ import DetailsPage from './pages/DetailsPage/DetailsPage';
 import HeartedContextProvider from './contexts/HeartedContext';
 import ThemeContextProvider from './contexts/DarkModeContext';
 import Checkout from './pages/Checkout/Checkout';
-// import CheckoutPage from './pages/Checkout/CheckoutPage';
 import RingLoader from 'react-spinners/RingLoader';
 
 
@@ -22,15 +21,13 @@ function App() {
     }, 1900);
   }, []);
 
-//** anybody inside will be able to use the heated context and theme context*/
-//* directs traffic
   return (
     <>
       {loading ? (
         <div className='app-container'>
         <div className="loader-container">
           <RingLoader size={90} color={'#d6368e'} loading={loading} />
-          <div className="loading-text">Hang tight, magic is happening!</div>
+          <div className="loading-text">Wait..... I'm downloading!</div>
         </div>
         </div>
       ) : (
@@ -43,7 +40,6 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/contactUs" element={<ContactUs />} />
                 <Route path="/details/:productId" element={<DetailsPage />} />
-                {/*<Route path="/checkout-page" element={<CheckoutPage />} />*/}
               </Routes>
               <Footer />
             </ThemeContextProvider>

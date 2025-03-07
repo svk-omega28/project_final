@@ -2,19 +2,18 @@ import { useContext, useState, useEffect } from "react";
 import "./Checkout.css";
 import { HeartedContext } from "../../contexts/HeartedContext";
 import CartCheckout from "../../components/CartCheckout/CartCheckout";
-import { useNavigate } from "react-router-dom"; // Используем useNavigate
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../contexts/DarkModeContext";
-import Modal from "react-modal"; // Импортируем Modal
+import Modal from "react-modal";
 
 function Checkout() {
   const { darkMode } = useContext(ThemeContext);
   const { hearted, setHearted } = useContext(HeartedContext);
   const [total, setTotal] = useState(0);
-  const [isCheckedOut, setIsCheckedOut] = useState(false); // Состояние для проверки оформления заказа
-  const navigate = useNavigate(); // Замени useHistory на useNavigate
+  const [isCheckedOut, setIsCheckedOut] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Пересчитываем общую сумму при изменении корзины
     let updatedTotal = 0;
     hearted.forEach((item) => {
       updatedTotal += item.price * (item.quantity || 1);
@@ -22,7 +21,6 @@ function Checkout() {
     setTotal(updatedTotal.toFixed(2));
   }, [hearted]);
 
-  // Функция для изменения количества товара
   const updateQuantity = (id, amount) => {
     const updatedCart = hearted.map((item) =>
         item.id === id
@@ -33,24 +31,21 @@ function Checkout() {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  // Функция для оформления заказа
   const handleCheckout = () => {
     if (hearted.length === 0) {
       alert('Your cart is empty!');
     } else {
-      setIsCheckedOut(true); // Отображаем модальное окно
+      setIsCheckedOut(true);
     }
   };
 
-  // Функция для закрытия модального окна
   const handleCloseModal = () => {
     setIsCheckedOut(false);
-    setHearted([]); // Очистить корзину после оформления заказа
-    localStorage.removeItem("cart"); // Очистить корзину из localStorage
-    navigate('/'); // Перейти на главную страницу
+    setHearted([]);
+    localStorage.removeItem("cart");
+    navigate('/');
   };
 
-  // Стили для модального окна
   const customStyles = {
     content: {
       top: "50%",
@@ -105,7 +100,6 @@ function Checkout() {
           </div>
         </div>
 
-        {/* Модальное окно для подтверждения заказа */}
         <Modal
             isOpen={isCheckedOut}
             onRequestClose={handleCloseModal}
