@@ -9,7 +9,9 @@ import DetailsPage from './pages/DetailsPage/DetailsPage';
 import HeartedContextProvider from './contexts/HeartedContext';
 import ThemeContextProvider from './contexts/DarkModeContext';
 import Checkout from './pages/Checkout/Checkout';
+// import CheckoutPage from './pages/Checkout/CheckoutPage';
 import RingLoader from 'react-spinners/RingLoader';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ function App() {
   }, []);
 
 //** anybody inside will be able to use the heated context and theme context*/
-//* directs traffic 
+//* directs traffic
   return (
     <>
       {loading ? (
@@ -41,6 +43,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/contactUs" element={<ContactUs />} />
                 <Route path="/details/:productId" element={<DetailsPage />} />
+                {/*<Route path="/checkout-page" element={<CheckoutPage />} />*/}
               </Routes>
               <Footer />
             </ThemeContextProvider>

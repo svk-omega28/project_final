@@ -1,0 +1,5 @@
+{
+  "require": {
+    "serj1chen/nova-poshta-sdk-php": "2.0.*"
+  }
+}

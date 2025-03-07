@@ -6,9 +6,9 @@ import { ThemeContext } from '../../contexts/DarkModeContext';
 
 function Homepage() {
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]); // Текущий список товаров (отфильтрованный/отсортированный)
-  const [originalProducts, setOriginalProducts] = useState([]); // Исходный список товаров
-  const [maxPrice, setMaxPrice] = useState(''); // Максимальная цена для фильтрации
+  const [products, setProducts] = useState([]);
+  const [maxPrice, setMaxPrice] = useState(''); // Добавляем состояние для максимальной цены
+  const [sortOrder, setSortOrder] = useState(''); // Добавляем состояние для сортировки
   const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -22,7 +22,6 @@ function Homepage() {
     axios.get("https://fakestoreapi.com/products")
         .then((result) => {
           setProducts(result.data);
-          setOriginalProducts(result.data); // Сохраняем исходный список товаров
         })
         .catch((err) => console.log(err));
   }, []);
@@ -36,7 +35,6 @@ function Homepage() {
     axios.get(url)
         .then(productResult => {
           setProducts(productResult.data);
-          setOriginalProducts(productResult.data); // Обновляем исходный список товаров
         })
         .catch((productError) => console.log(productError));
   };
@@ -44,16 +42,14 @@ function Homepage() {
   // Функция для применения фильтрации по цене
   const applyPriceFilter = () => {
     if (maxPrice) {
-      const filteredProducts = originalProducts.filter(product => product.price <= parseFloat(maxPrice));
+      const filteredProducts = products.filter(product => product.price <= parseFloat(maxPrice));
       setProducts(filteredProducts);
-    } else {
-      setProducts(originalProducts); // Если нет фильтрации, показываем все товары
     }
   };
 
   // Функция для сортировки товаров по цене
   const sortProducts = (order) => {
-    const sortedProducts = [...originalProducts].sort((a, b) => {
+    const sortedProducts = [...products].sort((a, b) => {
       if (order === 'asc') {
         return a.price - b.price; // Сортировка по возрастанию
       } else if (order === 'desc') {
@@ -61,6 +57,7 @@ function Homepage() {
       }
     });
     setProducts(sortedProducts);
+    setSortOrder(order); // Сохраняем текущий порядок сортировки
   };
 
   return (
@@ -72,17 +69,23 @@ function Homepage() {
                 {element.charAt(0).toUpperCase() + element.slice(1)}
               </p>
           ))}
+        </div>
 
-          {/* Добавляем инпут для ввода максимальной цены и кнопку для применения фильтра */}
-          <div className="price-filter">
-            <input
-                type="number"
-                placeholder="Max Price"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-            />
-            <button onClick={applyPriceFilter}>Filter</button>
-          </div>
+        {/* Добавляем инпут для ввода максимальной цены и кнопку для применения фильтра */}
+        <div className="price-filter">
+          <input
+              type="number"
+              placeholder="Max Price"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+          />
+          <button onClick={applyPriceFilter}>Filter</button>
+        </div>
+
+        {/* Добавляем кнопки для сортировки товаров */}
+        <div className="sort-buttons">
+          <button onClick={() => sortProducts('asc')}>Sort by Price: Low to High</button>
+          <button onClick={() => sortProducts('desc')}>Sort by Price: High to Low</button>
         </div>
 
         <div className='product-container'>

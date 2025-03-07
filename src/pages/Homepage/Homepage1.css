@@ -1,0 +1,99 @@
+.homepage-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FAFAFA;
+}
+
+.homepage-dark, .dark-category-container p{
+  background-color: #282828;
+  color: #bb86fc;
+}
+
+.category-container {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  color: var(--Blue-Page-Color);
+  width: 60%;
+  margin: 20px 0 0 90px;
+}
+
+.category-container p {
+  cursor: pointer;
+  position: relative; /* Add position relative to allow absolute positioning of pseudo-elements */
+  z-index: 1; /* Increase z-index to appear above pseudo-elements */
+}
+
+.category-container p::before,
+.category-container p::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #FFD814; /* Adjust the color of the line */
+  transition: width 0.3s ease; /* Add transition property for width */
+}
+
+.category-container p::before {
+  top: 0;
+  left: 0;
+}
+
+.category-container p::after {
+  bottom: 0;
+  right: 0;
+}
+
+.category-container p:hover::before,
+.category-container p:hover::after {
+  width: 100%; /* Increase the width to 100% on hover */
+}
+
+
+
+.product-container{
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   padding: 30px 100px 30px 100px;
+   }
+
+/* tablet css */
+
+@media screen and (max-width: 918px) {
+.category-container{
+    width: 100%;
+    margin: 0;
+}
+ .product-container{
+    padding: 0;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+ }
+}
+
+/* mobile css */
+
+@media screen and (max-width: 616px){
+.category-container{
+    width: 100%;
+    margin: 0;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.category-container p{
+    padding: 8px;
+}
+
+ .product-container{
+    width: 100%;
+ }
+}
