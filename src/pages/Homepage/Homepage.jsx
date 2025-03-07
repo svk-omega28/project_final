@@ -6,13 +6,12 @@ import { ThemeContext } from '../../contexts/DarkModeContext';
 
 function Homepage() {
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]); // Текущий список товаров (отфильтрованный/отсортированный)
-  const [originalProducts, setOriginalProducts] = useState([]); // Исходный список товаров
-  const [maxPrice, setMaxPrice] = useState(''); // Максимальная цена для фильтрации
+  const [products, setProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]);
+  const [maxPrice, setMaxPrice] = useState('');
   const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
-    // Загрузка категорий и товаров при загрузке страницы
     axios.get("https://fakestoreapi.com/products/categories")
         .then((res) => {
           setCategories(res.data);
@@ -22,12 +21,11 @@ function Homepage() {
     axios.get("https://fakestoreapi.com/products")
         .then((result) => {
           setProducts(result.data);
-          setOriginalProducts(result.data); // Сохраняем исходный список товаров
+          setOriginalProducts(result.data);
         })
         .catch((err) => console.log(err));
   }, []);
 
-  // Функция для фильтрации товаров по категории
   const handleFilter = (category) => {
     let url = "https://fakestoreapi.com/products";
     if (category !== "All") {
@@ -36,28 +34,26 @@ function Homepage() {
     axios.get(url)
         .then(productResult => {
           setProducts(productResult.data);
-          setOriginalProducts(productResult.data); // Обновляем исходный список товаров
+          setOriginalProducts(productResult.data);
         })
         .catch((productError) => console.log(productError));
   };
 
-  // Функция для применения фильтрации по цене
   const applyPriceFilter = () => {
     if (maxPrice) {
       const filteredProducts = originalProducts.filter(product => product.price <= parseFloat(maxPrice));
       setProducts(filteredProducts);
     } else {
-      setProducts(originalProducts); // Если нет фильтрации, показываем все товары
+      setProducts(originalProducts);
     }
   };
 
-  // Функция для сортировки товаров по цене
   const sortProducts = (order) => {
     const sortedProducts = [...originalProducts].sort((a, b) => {
       if (order === 'asc') {
-        return a.price - b.price; // Сортировка по возрастанию
+        return a.price - b.price;
       } else if (order === 'desc') {
-        return b.price - a.price; // Сортировка по убыванию
+        return b.price - a.price;
       }
     });
     setProducts(sortedProducts);
@@ -73,7 +69,6 @@ function Homepage() {
               </p>
           ))}
 
-          {/* Добавляем инпут для ввода максимальной цены и кнопку для применения фильтра */}
           <div className="price-filter">
             <input
                 type="number"
